@@ -15,7 +15,7 @@ end
 
 H_atom = Atoms(["H"], [0.0 0.0 0.0;], 16.0, 16.0, [1.0], [60, 60, 60], [1.0])
 calculate(H_atom)
-# Output:  Etot(["H"]) = -0.438419 Eh
+# Output:  Etot(["H"]) = -0.438413 Eh
 
 He_atom = Atoms(["He"], [0.0 0.0 0.0;], 16.0, 16.0, [2.0], [60, 60, 60], [2.0])
 calculate(He_atom)
@@ -24,4 +24,4 @@ calculate(He_atom)
 # Experimental geometry from CCCBDB: https://cccbdb.nist.gov/exp2x.asp?casno=1333740&charge=0
 H2_atom = Atoms(["H", "H"], [0.0 0.0 0.0; 1.4 0.0 0.0], 16.0, 16.0, [1.0 1.0], [60, 60, 60], [2.0])
 calculate(H2_atom)
-# Output:  Etot(["H", "H"]) = -1.113967 Eh
+# Output:  Etot(["H", "H"]) = -1.113968 Eh

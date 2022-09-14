@@ -40,7 +40,6 @@ function _init_W(atoms::Atoms; rand_seed::Int64=1234)
     #= Generate random initial-guess coefficients as starting values.
     Thesis: List. 3.18
     =#
-    seed!(rand_seed)
-    W = randn(ComplexF64, length(atoms.G2c), atoms.Nstate)
+    W = pseudo_uniform((length(atoms.G2c), atoms.Nstate); seed=rand_seed)
     return orth(atoms, W)
 end

@@ -1,8 +1,7 @@
+using Base.Math: libm
 using LinearAlgebra: det, Diagonal, dot, eigen, I, inv, tr
-using Random: randn, seed!
 
 using FFTW: fft, ifft
-using Base.Math: libm
 
 include("atoms.jl")
 include("scf.jl")
@@ -12,4 +11,5 @@ include("energies.jl")
 include("minimizer.jl")
 include("operators.jl")
 include("potentials.jl")
+include("utils.jl")
 include("xc.jl")

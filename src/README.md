@@ -11,4 +11,5 @@ Main source code directory.
 | operators.jl   | Plane wave basis-set dependent operators |
 | potentials.jl  | Potential |
 | scf.jl         | SCF function and struct definitions |
+| utils.py       | Linear algebra and random utilities |
 | xc.jl          | Exchange-correlation functionals |
