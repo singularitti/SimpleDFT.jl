@@ -3,8 +3,9 @@ function scf_step(scf::SCF)
     scf.Y = orth(scf.atoms, scf.W)
     scf.n = get_n_total(scf.atoms, scf.Y)
     scf.phi = solve_poisson(scf.atoms, scf.n)
-    scf.exc = lda_slater_x(scf.n)[1] + lda_chachiyo_c(scf.n)[1]
-    scf.vxc = lda_slater_x(scf.n)[2] + lda_chachiyo_c(scf.n)[2]
+    x, c = lda_slater_x(scf.n), lda_chachiyo_c(scf.n)
+    scf.exc = x[1] + c[1]
+    scf.vxc = x[2] + c[2]
     return get_E(scf)
 end
 
@@ -28,5 +29,5 @@ function sd(scf::SCF, Nit::Int64; etol::Float64=1e-6, beta::Float64=1e-5)
         scf.W = scf.W .- beta .* g
     end
     println("\nSCF not converged!")
-    return E
+    return last(Elist)
 end
