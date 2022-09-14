@@ -1,5 +1,5 @@
+"Perform one SCF step for a DFT calculation."
 function scf_step(scf::SCF)
-    #= Perform one SCF step for a DFT calculation. =#
     scf.Y = orth(scf.atoms, scf.W)
     scf.n = get_n_total(scf.atoms, scf.Y)
     scf.phi = solve_poisson(scf.atoms, scf.n)
@@ -10,11 +10,12 @@ function scf_step(scf::SCF)
 end
 
 
+"""
+Steepest descent minimization algorithm.
+Thesis: List. 3.21
+Fig. 3.2
+"""
 function sd(scf::SCF, Nit::Int64; etol::Float64=1e-6, beta::Float64=1e-5)
-    #= Steepest descent minimization algorithm.
-    Thesis: List. 3.21
-            Fig. 3.2
-    =#
     Elist = Float64[]
 
     for i in 1:Nit

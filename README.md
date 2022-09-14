@@ -18,7 +18,7 @@ The resulting energy difference between both codes is well below the mEₕ range
 | DFT | Restricted Kohn-Sham (RKS) |
 
 # Installation
-All necessary dependencies can be installed in your Julia terminal using
+All necessary dependencies can be installed in your Julia REPL using
 
 ```terminal
 using Pkg

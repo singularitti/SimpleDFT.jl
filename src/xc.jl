@@ -1,7 +1,8 @@
+"""
+Slater exchange functional (spin-paired).
+Thesis: Eq. 2.11
+"""
 function lda_slater_x(n::Matrix{ComplexF64}; alpha::Float64=2 / 3)
-    #= Slater exchange functional (spin-paired).
-    Thesis: Eq. 2.11
-    =#
     rs = (3 ./ (4 .* pi .* n)).^(1 / 3)
 
     f = -9 / 8 * (3 / (2 * pi))^(2 / 3)
@@ -12,8 +13,8 @@ function lda_slater_x(n::Matrix{ComplexF64}; alpha::Float64=2 / 3)
 end
 
 
+"Chachiyo parametrization of the correlation functional (spin-paired)."
 function lda_chachiyo_c(n::Matrix{ComplexF64})
-    #= Chachiyo parametrization of the correlation functional (spin-paired). =#
     rs = (3 ./ (4 .* pi .* n)).^(1 / 3)
 
     a = (log(2) - 1) / (2 * pi^2)
@@ -25,10 +26,11 @@ function lda_chachiyo_c(n::Matrix{ComplexF64})
 end
 
 
+"""
+Vosko-Wilk-Nusair parametrization of the correlation functional (spin-paired).
+Thesis: Eq. 2.12 ff.
+"""
 function lda_vwn_c(n::Matrix{ComplexF64})
-    #= Vosko-Wilk-Nusair parametrization of the correlation functional (spin-paired).
-    Thesis: Eq. 2.12 ff.
-    =#
     rs = (3 ./ (4 .* pi .* n)).^(1 / 3)
 
     a = 0.0310907

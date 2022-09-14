@@ -1,7 +1,8 @@
+"""
+Calculate energy contributions.
+Thesis: Eq. 2.49
+"""
 function get_E(scf::SCF)
-    #= Calculate energy contributions.
-    Thesis: Eq. 2.49
-    =#
     Ekin = get_Ekin(scf.atoms, scf.Y)
     Ecoul = get_Ecoul(scf.atoms, scf.n, scf.phi)
     Exc = get_Exc(scf.atoms, scf.n, scf.exc)
@@ -10,47 +11,52 @@ function get_E(scf::SCF)
 end
 
 
+"""
+Calculate the kinetic energy.
+Thesis: Eq. 2.37
+"""
 function get_Ekin(atoms::Atoms, W::Matrix{ComplexF64})
-    #= Calculate the kinetic energy.
-    Thesis: Eq. 2.37
-    =#
     F = Diagonal(atoms.f)
     T = -0.5 * tr(F * (W' * op_L(atoms, W)))
     return real(T)
 end
 
 
+"""
+Calculate the Coulomb energy.
+Thesis: Eq. 2.40 + Eq. 2.41 (as in Eq. 2.49)
+"""
 function get_Ecoul(atoms::Atoms, n::Array{ComplexF64}, phi::Array{ComplexF64})
-    #= Calculate the Coulomb energy.
-    Thesis: Eq. 2.40 + Eq. 2.41 (as in Eq. 2.49)
-    =#
     Ecoul = 0.5 * (n' * op_Jdag(atoms, op_O(atoms, phi)))
     return real(Ecoul[1])
 end
 
 
+"""
+Calculate the exchange-correlation energy.
+Thesis: Eq. 2.39
+"""
 function get_Exc(atoms::Atoms, n::Array{ComplexF64}, exc::Array{ComplexF64})
-    #= Calculate the exchange-correlation energy.
-    Thesis: Eq. 2.39
-    =#
     Exc = n' * op_Jdag(atoms, op_O(atoms, op_J(atoms, exc)))
     return real(Exc[1])
 end
 
 
+"""
+Calculate the electron-ion interaction.
+Thesis: Eq. 2.38
+"""
 function get_Een(n::Array{ComplexF64}, Vreciproc::Matrix{ComplexF64})
-    #= Calculate the electron-ion interaction.
-    Thesis: Eq. 2.38
-    =#
     Een = Vreciproc' * n
     return real(Een[1])
 end
 
 
+"""
+Calculate the Ewald energy.
+Thesis: Eq. A.12 ff.
+"""
 function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
-    #= Calculate the Ewald energy.
-    Thesis: Eq. A.12 ff.
-    =#
     t1 = atoms.R[:, 1]
     t2 = atoms.R[:, 2]
     t3 = atoms.R[:, 3]

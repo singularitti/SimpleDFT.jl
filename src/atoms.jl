@@ -1,5 +1,5 @@
+"Atoms struct that holds all system and cell parameters."
 mutable struct Atoms
-    # Atoms struct that holds all system and cell parameters.
     atom::Array{String}
     X::Matrix{Float64}
     a::Float64
@@ -18,21 +18,22 @@ mutable struct Atoms
     G2c::Array{Float64}
     Sf::Array{ComplexF64}
 
+    "Initialize and build all necessary parameters."
     function Atoms(atom, X, a, ecut, Z, s, f)
-        #= Initialize and build all necessary parameters. =#
-        M, N = _get_index_matrices(s)
-        Natoms, Nstate, R, Omega, r = _set_cell(atom, a, s, f, M)
-        G, G2, active, G2c, Sf = _set_G(X, ecut, R, N)
+        M, N = get_index_matrices(s)
+        Natoms, Nstate, R, Omega, r = set_cell(atom, a, s, f, M)
+        G, G2, active, G2c, Sf = set_G(X, ecut, R, N)
         new(atom, X, a, ecut, Z, s, f, Natoms, Nstate, R, Omega, r, G, G2, active, G2c, Sf)
     end
 end
 
 
-function _get_index_matrices(s::Array{Int64})
-    #= Build index matrices M and N to build the real and reciprocal space samplings.
-    Thesis: List 3.4
-            List 3.5
-    =#
+"""
+Build index matrices M and N to build the real and reciprocal space samplings.
+Thesis: List 3.4
+        List 3.5
+"""
+function get_index_matrices(s::Array{Int64})
     ms = 0:prod(s) - 1
     m1 = ms .% s[1]
     m2 = floor.(Int64, ms ./ s[1]) .% s[2]
@@ -47,13 +48,14 @@ function _get_index_matrices(s::Array{Int64})
 end
 
 
-function _set_cell(atom::Array{String}, a::Float64, s::Array{Int64}, f::Array{Float64}, M::Matrix{Int64})
-    #= Build the unit cell and create the respective sampling.
-    Thesis: Eq. 3.3
-            List. 3.3
-            Eq. 3.5
-            List. 3.3
-    =#
+"""
+Build the unit cell and create the respective sampling.
+Thesis: Eq. 3.3
+        List. 3.3
+        Eq. 3.5
+        List. 3.3
+"""
+function set_cell(atom::Array{String}, a::Float64, s::Array{Int64}, f::Array{Float64}, M::Matrix{Int64})
     Natoms = length(atom)
     Nstate = length(f)
 
@@ -64,15 +66,16 @@ function _set_cell(atom::Array{String}, a::Float64, s::Array{Int64}, f::Array{Fl
 end
 
 
-function _set_G(X::Matrix{Float64}, ecut::Float64, R::Matrix{Float64}, N::Matrix{Int64})
-    #= Build G-vectors, build squared magnitudes G2, and generate the active space.
-    Thesis: Eq. 3.8
-            List. 3.5
-            List. 3.6
-            List. 3.7
-            Eq. 3.9
-            List. 3.8
-    =#
+"""
+Build G-vectors, build squared magnitudes G2, and generate the active space.
+Thesis: Eq. 3.8
+        List. 3.5
+        List. 3.6
+        List. 3.7
+        Eq. 3.9
+        List. 3.8
+"""
+function set_G(X::Matrix{Float64}, ecut::Float64, R::Matrix{Float64}, N::Matrix{Int64})
     G = 2 .* pi .* N * inv(R)
     G2 = sum(G.^2; dims=2)
     active = G2 .<= 2 * ecut
