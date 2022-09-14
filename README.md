@@ -12,7 +12,7 @@ This version is a straightforward translation of the [SimpleDFT](https://gitlab.
 | --------- | ----------- |
 | Language | Julia 1.8 |
 | License | Apache 2.0 |
-| Dependencies | Only FFTW and SpecialFunctions |
+| Dependencies | Only FFTW |
 | Basis set| Plane waves (PW) |
 | DFT | Restricted Kohn-Sham (RKS) |
 
@@ -22,7 +22,6 @@ All necessary dependencies can be installed in your Julia terminal using
 ```terminal
 using Pkg
 Pkg.add("FFTW")
-Pkg.add("SpecialFunctions")
 ```
 
 # Examples

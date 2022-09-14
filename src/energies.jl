@@ -90,7 +90,8 @@ function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
                         if (ia != ja) || ((abs(i) + abs(j) + abs(k)) != 0)
                             T = i .* t1 .+ j .* t2 .+ k .* t3
                             rmag = sqrt(sum((dX .- T).^2))
-                            Eewald += 0.5 * ZiZj * erfc(rmag * nu) / rmag
+                            erfc = ccall((:erfc, libm), Float64, (Float64, ), rmag * nu)
+                            Eewald += 0.5 * ZiZj * erfc / rmag
                         end
                     end
                 end

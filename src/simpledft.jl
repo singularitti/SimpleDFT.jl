@@ -2,7 +2,7 @@ using LinearAlgebra: det, Diagonal, dot, eigen, I, inv, tr
 using Random: randn, seed!
 
 using FFTW: fft, ifft
-using SpecialFunctions: erfc
+using Base.Math: libm
 
 include("atoms.jl")
 include("scf.jl")
