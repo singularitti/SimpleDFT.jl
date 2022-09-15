@@ -3,7 +3,7 @@ Solve the Poisson equation.
 Thesis: Eq. 2.48
 """
 function solve_poisson(atoms::Atoms, n::Array{ComplexF64})
-    return -4 .* pi .* op_Linv(atoms, op_O(atoms, op_J(atoms, n)))
+    return -4.0 .* pi .* op_Linv(atoms, op_O(atoms, op_J(atoms, n)))
 end
 
 

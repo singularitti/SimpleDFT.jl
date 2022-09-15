@@ -64,7 +64,7 @@ function get_Eewald(atoms::Atoms; gcut::Float64 = 2.0, gamma::Float64 = 1e-8)
     t2m = sqrt(dot(t2, t2))
     t3m = sqrt(dot(t3, t3))
 
-    RecVecs = 2 * pi * inv(atoms.R')
+    RecVecs = 2.0 * pi * inv(atoms.R')
     g1 = RecVecs[:, 1]
     g2 = RecVecs[:, 2]
     g3 = RecVecs[:, 3]
@@ -73,13 +73,13 @@ function get_Eewald(atoms::Atoms; gcut::Float64 = 2.0, gamma::Float64 = 1e-8)
     g3m = sqrt(dot(g3, g3))
 
     gexp = -log(gamma)
-    nu = 0.5 * sqrt(gcut^2 / gexp)
+    nu = 0.5 * sqrt(gcut^2.0 / gexp)
 
-    x = sum(atoms.Z .^ 2)
+    x = sum(atoms.Z .^ 2.0)
     totalcharge = sum(atoms.Z)
 
     Eewald = -nu * x / sqrt(pi)
-    Eewald += -pi * (totalcharge^2) / (2 * atoms.Omega * nu^2)
+    Eewald += -pi * (totalcharge^2.0) / (2.0 * atoms.Omega * nu^2.0)
 
     tmax = sqrt(0.5 * gexp) / nu
     mmm1 = round(Int64, tmax / t1m + 1.5)
@@ -93,9 +93,9 @@ function get_Eewald(atoms::Atoms; gcut::Float64 = 2.0, gamma::Float64 = 1e-8)
             for i = -mmm1:mmm1
                 for j = -mmm2:mmm2
                     for k = -mmm3:mmm3
-                        if (ia != ja) || ((abs(i) + abs(j) + abs(k)) != 0)
+                        if (ia != ja) || ((abs(i) + abs(j) + abs(k)) != 0.0)
                             T = i .* t1 .+ j .* t2 .+ k .* t3
-                            rmag = sqrt(sum((dX .- T) .^ 2))
+                            rmag = sqrt(sum((dX .- T) .^ 2.0))
                             erfc = ccall((:erfc, libm), Float64, (Float64,), rmag * nu)
                             Eewald += 0.5 * ZiZj * erfc / rmag
                         end
@@ -116,11 +116,11 @@ function get_Eewald(atoms::Atoms; gcut::Float64 = 2.0, gamma::Float64 = 1e-8)
             for i = -mmm1:mmm1
                 for j = -mmm2:mmm2
                     for k = -mmm3:mmm3
-                        if (abs(i) + abs(j) + abs(k)) != 0
+                        if (abs(i) + abs(j) + abs(k)) != 0.0
                             G = i .* g1 .+ j .* g2 .+ k .* g3
                             GX = sum(G .* dX)
-                            G2 = sum(G .^ 2)
-                            x = 2 * pi / atoms.Omega * exp(-0.25 * G2 / nu^2) / G2
+                            G2 = sum(G .^ 2.0)
+                            x = 2.0 * pi / atoms.Omega * exp(-0.25 * G2 / nu^2.0) / G2
                             Eewald += x * ZiZj * cos(GX)
                         end
                     end

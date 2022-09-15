@@ -28,7 +28,7 @@ Thesis: List. 3.12
 """
 function op_Linv(atoms::Atoms, W::Array{ComplexF64})
     out = W ./ atoms.G2 ./ -atoms.Omega
-    out[1] = 0
+    out[1] = 0.0
     return out
 end
 
@@ -39,7 +39,7 @@ Thesis: List. 3.12
 """
 function op_Linv(atoms::Atoms, W::Matrix{ComplexF64})
     out = W ./ atoms.G2 ./ -atoms.Omega
-    out[1, :] .= 0
+    out[1, :] .= 0.0
     return out
 end
 
