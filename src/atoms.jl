@@ -34,7 +34,7 @@ Thesis: List 3.4
         List 3.5
 """
 function get_index_matrices(s::Array{Int64})
-    ms = 0:prod(s) - 1
+    ms = 0:prod(s)-1
     m1 = ms .% s[1]
     m2 = floor.(Int64, ms ./ s[1]) .% s[2]
     m3 = floor.(Int64, ms ./ (s[1] .* s[2])) .% s[3]
@@ -77,9 +77,9 @@ Thesis: Eq. 3.8
 """
 function set_G(X::Matrix{Float64}, ecut::Float64, R::Matrix{Float64}, N::Matrix{Int64})
     G = 2 .* pi .* N * inv(R)
-    G2 = sum(G.^2; dims=2)
+    G2 = sum(G .^ 2; dims = 2)
     active = G2 .<= 2 * ecut
     G2c = G2[active]
-    Sf = sum(exp.(-1im .* G * X'), dims=2)
+    Sf = sum(exp.(-1im .* G * X'), dims = 2)
     return G, G2, active, G2c, Sf
 end

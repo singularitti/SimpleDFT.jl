@@ -56,7 +56,7 @@ end
 Calculate the Ewald energy.
 Thesis: Eq. A.12 ff.
 """
-function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
+function get_Eewald(atoms::Atoms; gcut::Float64 = 2.0, gamma::Float64 = 1e-8)
     t1 = atoms.R[:, 1]
     t2 = atoms.R[:, 2]
     t3 = atoms.R[:, 3]
@@ -75,7 +75,7 @@ function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
     gexp = -log(gamma)
     nu = 0.5 * sqrt(gcut^2 / gexp)
 
-    x = sum(atoms.Z.^2)
+    x = sum(atoms.Z .^ 2)
     totalcharge = sum(atoms.Z)
 
     Eewald = -nu * x / sqrt(pi)
@@ -95,8 +95,8 @@ function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
                     for k = -mmm3:mmm3
                         if (ia != ja) || ((abs(i) + abs(j) + abs(k)) != 0)
                             T = i .* t1 .+ j .* t2 .+ k .* t3
-                            rmag = sqrt(sum((dX .- T).^2))
-                            erfc = ccall((:erfc, libm), Float64, (Float64, ), rmag * nu)
+                            rmag = sqrt(sum((dX .- T) .^ 2))
+                            erfc = ccall((:erfc, libm), Float64, (Float64,), rmag * nu)
                             Eewald += 0.5 * ZiZj * erfc / rmag
                         end
                     end
@@ -119,7 +119,7 @@ function get_Eewald(atoms::Atoms; gcut::Float64=2.0, gamma::Float64=1e-8)
                         if (abs(i) + abs(j) + abs(k)) != 0
                             G = i .* g1 .+ j .* g2 .+ k .* g3
                             GX = sum(G .* dX)
-                            G2 = sum(G.^2)
+                            G2 = sum(G .^ 2)
                             x = 2 * pi / atoms.Omega * exp(-0.25 * G2 / nu^2) / G2
                             Eewald += x * ZiZj * cos(GX)
                         end

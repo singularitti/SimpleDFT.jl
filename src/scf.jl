@@ -20,18 +20,18 @@ end
 
 
 "SCF function to handle direct minimizations."
-function runSCF(atoms::Atoms; Nit::Int64=1001, etol::Float64=1e-6)
+function runSCF(atoms::Atoms; Nit::Int64 = 1001, etol::Float64 = 1e-6)
     pot = coulomb(atoms)
     W = init_W(atoms)
     scf = SCF(atoms, pot, W)
-    return run(scf; Nit=Nit, etol=etol)
+    return run(scf; Nit = Nit, etol = etol)
 end
 
 
 "Run the self-consistent field (SCF) calculation."
-function run(scf::SCF; Nit::Int64=1001, etol::Float64=1e-6)
+function run(scf::SCF; Nit::Int64 = 1001, etol::Float64 = 1e-6)
     scf.Eewald = get_Eewald(scf.atoms)
-    Etot = sd(scf, Nit; etol=etol)
+    Etot = sd(scf, Nit; etol = etol)
     return Etot
 end
 
@@ -40,7 +40,7 @@ end
 Generate random initial-guess coefficients as starting values.
 Thesis: List. 3.18
 """
-function init_W(atoms::Atoms; rand_seed::Int64=1234)
-    W = pseudo_uniform((length(atoms.G2c), atoms.Nstate); seed=rand_seed)
+function init_W(atoms::Atoms; rand_seed::Int64 = 1234)
+    W = pseudo_uniform((length(atoms.G2c), atoms.Nstate); seed = rand_seed)
     return orth(atoms, W)
 end

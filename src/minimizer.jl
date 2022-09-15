@@ -15,14 +15,14 @@ Steepest descent minimization algorithm.
 Thesis: List. 3.21
 Fig. 3.2
 """
-function sd(scf::SCF, Nit::Int64; etol::Float64=1e-6, beta::Float64=1e-5)
+function sd(scf::SCF, Nit::Int64; etol::Float64 = 1e-6, beta::Float64 = 1e-5)
     Elist = Float64[]
 
-    for i in 1:Nit
+    for i = 1:Nit
         E = scf_step(scf)
         append!(Elist, E)
         print("Nit: $(i)  \tEtot: $(round(E; digits=6)) Eh\r")
-        if i > 1 && abs(Elist[i - 1] - Elist[i]) < etol
+        if i > 1 && abs(Elist[i-1] - Elist[i]) < etol
             println("\nSCF converged.")
             return E
         end

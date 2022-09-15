@@ -55,7 +55,7 @@ function op_I(atoms::Atoms, W::Array{ComplexF64})
         Wfft = W
     else
         Wfft = convert(Array{ComplexF64}, atoms.active)
-        Wfft[Wfft .!= 0] = W
+        Wfft[Wfft.!=0] = W
     end
     Wfft = reshape(Wfft, atoms.s[1], atoms.s[2], atoms.s[3])
     Finv = vec(ifft(Wfft))
@@ -70,7 +70,7 @@ List. 3.13
 """
 function op_I(atoms::Atoms, W::Matrix{ComplexF64})
     Finv = zeros(ComplexF64, length(atoms.G2), size(W)[2])
-    for i in 1:size(W)[2]
+    for i = 1:size(W)[2]
         Finv[:, i] = op_I(atoms, W[:, i])
     end
     return Finv
@@ -97,7 +97,7 @@ List. 3.13
 """
 function op_J(atoms::Atoms, W::Matrix{ComplexF64})
     Finv = zeros(ComplexF64, length(atoms.G2), size(W)[2])
-    for i in 1:size(W)[2]
+    for i = 1:size(W)[2]
         Finv[:, i] = op_J(atoms, W[:, i])
     end
     return Finv
@@ -124,7 +124,7 @@ List. 3.15
 """
 function op_Idag(atoms::Atoms, W::Matrix{ComplexF64})
     F = zeros(ComplexF64, length(atoms.G2c), size(W)[2])
-    for i in 1:size(W)[2]
+    for i = 1:size(W)[2]
         F[:, i] = op_Idag(atoms, W[:, i])
     end
     return F

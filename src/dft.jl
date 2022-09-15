@@ -15,7 +15,7 @@ List. 3.23
 function get_n_total(atoms::Atoms, Y::Matrix{ComplexF64})
     Yrs = op_I(atoms, Y)
     n = real(conj(Yrs) .* atoms.f .* Yrs)
-    return sum(n, dims=2)
+    return sum(n, dims = 2)
 end
 
 
