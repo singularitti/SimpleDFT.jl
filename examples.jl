@@ -14,15 +14,15 @@ function calculate(atoms)
 end
 
 
-H_atom = Atoms(["H"], [0.0 0.0 0.0;], 16.0, 16.0, [1.0], [60, 60, 60], [1.0])
+const H_atom = Atoms(["H"], [0.0 0.0 0.0;], 16.0, 16.0, [1.0], [60, 60, 60], [1.0])
 @time calculate(H_atom)
 # Output:  Etot(["H"]) = -0.438413 Eh
 
-He_atom = Atoms(["He"], [0.0 0.0 0.0;], 16.0, 16.0, [2.0], [60, 60, 60], [2.0])
+const He_atom = Atoms(["He"], [0.0 0.0 0.0;], 16.0, 16.0, [2.0], [60, 60, 60], [2.0])
 @time calculate(He_atom)
 # Output:  Etot(["He"]) = -2.632034 Eh
 
 # Experimental geometry from CCCBDB: https://cccbdb.nist.gov/exp2x.asp?casno=1333740&charge=0
-H2_atom = Atoms(["H", "H"], [0.0 0.0 0.0; 1.4 0.0 0.0], 16.0, 16.0, [1.0 1.0], [60, 60, 60], [2.0])
+const H2_atom = Atoms(["H", "H"], [0.0 0.0 0.0; 1.4 0.0 0.0], 16.0, 16.0, [1.0 1.0], [60, 60, 60], [2.0])
 @time calculate(H2_atom)
 # Output:  Etot(["H", "H"]) = -1.113968 Eh
