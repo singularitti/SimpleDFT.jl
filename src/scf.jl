@@ -11,7 +11,7 @@ mutable struct SCF
     Eewald::Float64
 
     "Initialize SCF struct."
-    function SCF(atoms, pot, W)
+    function SCF(atoms::Atoms, pot::Array{ComplexF64}, W::Array{ComplexF64})
         M = Matrix{ComplexF64}(undef, 0, 0)
         A = ComplexF64[]
         new(atoms, pot, W, M, A, A, A, A, 0.0)

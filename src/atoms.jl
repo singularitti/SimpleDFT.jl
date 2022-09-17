@@ -19,7 +19,7 @@ mutable struct Atoms
     Sf::Array{ComplexF64}
 
     "Initialize and build all necessary parameters."
-    function Atoms(atom, X, a, ecut, Z, s, f)
+    function Atoms(atom::Array{String}, X::Matrix{Float64}, a::Float64, ecut::Float64, Z::Array{Float64}, s::Array{Int64}, f::Array{Float64})
         M, N = get_index_matrices(s)
         Natoms, Nstate, R, Omega, r = set_cell(atom, a, s, f, M)
         G, G2, active, G2c, Sf = set_G(X, ecut, R, N)

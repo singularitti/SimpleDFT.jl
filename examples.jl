@@ -8,7 +8,7 @@ include("src/SimpleDFT.jl")
 using .SimpleDFT
 
 
-function calculate(atoms)
+function calculate(atoms::Atoms)
     etot = runSCF(atoms)
     println("Etot($(atoms.atom)) = $(round(etot; digits=6)) Eh")
 end
