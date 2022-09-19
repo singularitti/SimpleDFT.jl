@@ -2,7 +2,7 @@
 Example calculations for the SimpleDFT.jl code, including H, He, and H2.
 References for the DFT++ formulation: https://doi.org/10.1016/s0010-4655(00)00072-2
 Code annotations reference this master thesis: http://dx.doi.org/10.13140/RG.2.2.27958.42568/2
-More documentation can be found inside the eminus routines: https://gitlab.com/esp42/sage/eminus
+More documentation can be found inside the eminus routines: https://gitlab.com/wangenau/eminus
 =#
 include("src/SimpleDFT.jl")
 using .SimpleDFT
