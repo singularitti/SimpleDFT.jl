@@ -28,6 +28,7 @@ end
 
 """
 Vosko-Wilk-Nusair parametrization of the correlation functional (spin-paired).
+Not used, only for reference.
 Thesis: Eq. 2.12 ff.
 """
 function lda_vwn_c(n::Matrix{ComplexF64})
