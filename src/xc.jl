@@ -50,6 +50,7 @@ function lda_vwn_c(n::Matrix{ComplexF64})
     ec = a .* (log.(rs ./ fx) .+ f1 .* qx .- f2 .* (log.((rs12 .- x0) .^ 2.0 ./ fx) .+ f3 .* qx))
     tx = 2.0 .* rs12 .+ b
     tt = tx .* tx .+ q .* q
-    vc = ec .- rs12 .* a ./ 6.0 .* (2.0 ./ rs12 .- tx ./ fx .- 4.0 .* b ./ tt .- f2 .* (2.0 ./ (rs12 .- x0) .- tx ./ fx .- 4.0 .* (2.0 .* x0 .+ b) ./ tt))
+    vc = ec .- rs12 .* a ./ 6.0 .* (
+        2.0 ./ rs12 .- tx ./ fx .- 4.0 .* b ./ tt .- f2 .* (2.0 ./ (rs12 .- x0) .- tx ./ fx .- 4.0 .* (2.0 .* x0 .+ b) ./ tt))
     return ec, vc
 end

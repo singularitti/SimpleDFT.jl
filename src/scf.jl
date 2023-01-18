@@ -31,8 +31,7 @@ end
 "Run the self-consistent field (SCF) calculation."
 function run(scf::SCF; Nit::Int64 = 1001, etol::Float64 = 1e-6)
     scf.Eewald = get_Eewald(scf.atoms)
-    Etot = sd(scf, Nit; etol = etol)
-    return Etot
+    return sd(scf, Nit; etol = etol)
 end
 
 
