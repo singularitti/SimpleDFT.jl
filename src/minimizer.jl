@@ -30,5 +30,5 @@ function sd(scf::SCF, Nit::Int64; etol::Float64 = 1e-6, beta::Float64 = 1e-5)
         scf.W = scf.W .- beta .* g
     end
     println("\nSCF not converged!")
-    return last(Elist)
+    return E
 end
