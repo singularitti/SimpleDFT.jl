@@ -6,8 +6,10 @@
 
 SimpleDFT.jl is a simple plane wave density functional theory (DFT) code.
 It is a Julia implementation of the [DFT++](https://arxiv.org/abs/cond-mat/9909130) pragmas proposed by Thomas Arias et al.
+Also, it serves as the minimalistic prototype for the [eminus](https://gitlab.com/wangenau/eminus) code,
+which was introduced in the [master thesis](https://www.researchgate.net/publication/356537762_Domain-averaged_Fermi_holes_A_self-interaction_correction_perspective) of Wanja Timm Schulze to explain theory and software development compactly.
 This version is a straightforward translation of the [SimpleDFT](https://gitlab.com/wangenau/simpledft) code from Python to Julia.
-The resulting energy difference between both codes is well below the mEₕ range.
+The resulting energy difference between all codes is well below the mEₕ range.
 
 | SimpleDFT.jl | Description |
 | --------- | ----------- |
@@ -31,3 +33,13 @@ Example calculations, i.e., the H atom, He atom, and H2 molecule can be executed
 ```terminal
 julia examples.jl
 ```
+
+# Simplifications
+This code is about implementing plane wave DFT as simple as possible, while still being general.
+To classify the shortcomings from a fully-fletched DFT code, the most important simplifications are listed below
+* Restricted Kohn-Sham DFT only, no open-shell systems
+* LDA only, no functionals using gradients
+* All-electron Coulomb potential, no pseudopotentials to only treat valence electrons
+* Gamma-point only, no band paths
+* Steepest descent only, no sophisticated minimizations
+* Random starting guess only, no calculated guess of the density
