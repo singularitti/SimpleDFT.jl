@@ -3,7 +3,7 @@ function scf_step(scf::SCF)
     scf.Y = orth(scf.atoms, scf.W)
     scf.n = get_n_total(scf.atoms, scf.Y)
     scf.phi = solve_poisson(scf.atoms, scf.n)
-    x, c = lda_slater_x(scf.n), lda_chachiyo_c(scf.n)
+    x, c = lda_x(scf.n), lda_c_chachiyo(scf.n)
     scf.exc = x[1] + c[1]
     scf.vxc = x[2] + c[2]
     return get_E(scf)

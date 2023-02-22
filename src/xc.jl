@@ -2,7 +2,7 @@
 Slater exchange functional (spin-paired).
 Thesis: Eq. 2.11
 """
-function lda_slater_x(n::Matrix{ComplexF64})
+function lda_x(n::Matrix{ComplexF64})
     f = -3.0 / 4.0 * (3.0 / (2.0 * pi))^(2.0 / 3.0)
 
     rs = (3.0 ./ (4.0 .* pi .* n)) .^ (1.0 / 3.0)
@@ -14,7 +14,7 @@ end
 
 
 "Chachiyo parametrization of the correlation functional (spin-paired)."
-function lda_chachiyo_c(n::Matrix{ComplexF64})
+function lda_c_chachiyo(n::Matrix{ComplexF64})
     a = -0.01554535  # (log(2.0) - 1.0) / (2.0 * pi^2.0)
     b = 20.4562557
 
@@ -31,7 +31,7 @@ Vosko-Wilk-Nusair parametrization of the correlation functional (spin-paired).
 Not used, only for reference as it was used in the master thesis.
 Thesis: Eq. 2.12 ff.
 """
-function lda_vwn_c(n::Matrix{ComplexF64})
+function lda_c_vwn(n::Matrix{ComplexF64})
     a = 0.0310907
     b = 3.72744
     c = 12.9352
