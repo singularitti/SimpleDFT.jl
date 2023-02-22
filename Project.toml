@@ -1,7 +1,7 @@
 name = "SimpleDFT"
 uuid = "35701496-0881-4896-bc7a-ad89b4d6b530"
 authors = ["Wanja Timm Schulze <wangenau@protonmail.com>"]
-version = "2.1"
+version = "2.2"
 
 [deps]
 FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
