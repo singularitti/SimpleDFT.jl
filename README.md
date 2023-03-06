@@ -1,7 +1,7 @@
 ![simpledft.jl logo](https://gitlab.com/wangenau/simpledft.jl/-/raw/main/logo/simpledft_jl_logo.png)
 
 # SimpleDFT.jl
-[![language](https://img.shields.io/badge/language-Julia-green)](https://www.python.org)
+[![language](https://img.shields.io/badge/language-Julia-blue)](https://www.julialang.org)
 [![license](https://img.shields.io/badge/license-APACHE2-lightgrey)](https://gitlab.com/wangenau/simpledft.jl/-/blob/main/LICENSE)
 
 SimpleDFT.jl is a simple plane wave density functional theory (DFT) code.
