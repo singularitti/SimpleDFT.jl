@@ -17,7 +17,7 @@ Thesis: Eq. 2.37
 """
 function get_Ekin(atoms::Atoms, W::Matrix{ComplexF64})
     F = Diagonal(atoms.f)
-    T = -0.5 * tr(F * (W' * op_L(atoms, W)))
+    T = -0.5 * tr(F * W' * op_L(atoms, W))
     return real(T)
 end
 

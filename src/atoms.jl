@@ -35,9 +35,9 @@ Thesis: List 3.4
 """
 function get_index_matrices(s::Array{Int64})
     ms = 0:prod(s)-1
-    m1 = ms .% s[1]
-    m2 = floor.(Int64, ms ./ s[1]) .% s[2]
-    m3 = floor.(Int64, ms ./ (s[1] .* s[2])) .% s[3]
+    m1 = floor.(Int64, ms ./ (s[3] .* s[2])) .% s[1]
+    m2 = floor.(Int64, ms ./ s[3]) .% s[2]
+    m3 = ms .% s[3]
     M = [m1 m2 m3]
 
     n1 = m1 .- (m1 .> s[1] ./ 2.0) .* s[1]

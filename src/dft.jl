@@ -38,11 +38,12 @@ function get_grad(atoms::Atoms, W::Matrix{ComplexF64}, Y::Matrix{ComplexF64}, n:
     F = Diagonal(atoms.f)
     HW = H(atoms, W, Y, n, phi, vxc, Vreciproc)
     WHW = W' * HW
-    U = W' * op_O(atoms, W)
+    OW = op_O(atoms, W)
+    U = W' * OW
     invU = inv(U)
     U12 = sqrt(invU)
     Ht = U12 * WHW * U12
-    return (HW .- (op_O(atoms, W) * invU) * WHW) * (U12 * F * U12) .+ op_O(atoms, W) * (U12 * Q(Ht * F .- F * Ht, U))
+    return (HW .- (OW * invU) * WHW) * (U12 * F * U12) .+ OW * (U12 * Q(Ht * F .- F * Ht, U))
 end
 
 
