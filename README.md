@@ -27,6 +27,13 @@ using Pkg
 Pkg.add("FFTW")
 ```
 
+The package can be installed with a developer installation in your Julia REPL using
+
+```terminal
+]
+dev .
+```
+
 # Examples
 Example calculations, i.e., the H atom, He atom, and H2 molecule can be executed with
 
